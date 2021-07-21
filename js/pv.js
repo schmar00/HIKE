@@ -75,7 +75,7 @@ function insertVocDesc(vocProjects, divID) { //?????????????????????? SCRIPT üb
                     let topConcepts = `<a href="${BASE}?uri=${uris}</a>`;
                     $('#' + divID).append(`
                                 <div class="media mb-4">
-                                    <img class="d-flex mr-3 rounded-circle" src="img/${value.image}">
+                                    
                                         <div id="" class="media-body">
                                         <h4 class="mt-0">
                                             ${item.Title.value} (${value.acronym})
