@@ -35,9 +35,9 @@ $(document).ready(function () {
 
 function insertPageDesc() {
 
-    $('#page_desc').append('<br><h1 id="title">GeoERA Project Vocabularies</h1>');
-    $('#page_desc').append('<h4>EGDI - European Geological Data Infrastructure</h4>');
-    $('#page_desc').append('<p>Establishing the European Geological Surveys Research Area to deliver a Geological Service for Europe</p>');
+    $('#page_desc').append('<br><h1 id="title">HIKE Fault Database</h1>');
+/*     $('#page_desc').append('<h4>EGDI - European Geological Data Infrastructure</h4>');
+    $('#page_desc').append('<p>Establishing the European Geological Surveys Research Area to deliver a Geological Service for Europe</p>'); */
 }
 
 //*********************descriptions insert of vocabularies for the start page******************************
@@ -49,6 +49,7 @@ function insertVocDesc(vocProjects, divID) { //?????????????????????? SCRIPT üb
                                     SELECT ?cs ?Title ?Desc (COUNT(?c) AS ?count) (SUM(?x) AS ?new)
                                     (GROUP_CONCAT(DISTINCT ?L; separator = "|") as ?topConcepts) ?modified
                                     WHERE { SELECT * {
+                                        VALUES ?cs {<https://data.geoscience.earth/ncl/geoera/hike/faults>}
                                     ?cs a skos:ConceptScheme; skos:hasTopConcept ?tc; dcterms:title ?Title . FILTER(lang(?Title)="en")
                                     OPTIONAL {?cs dcterms:description ?D . FILTER(lang(?D)="en")}
                                     OPTIONAL {?cs dcterms:created ?r}
@@ -197,7 +198,7 @@ function initSearch() {
                                     SELECT ?s ?L
                                     WHERE {
                                     VALUES ?p {skos:prefLabel skos:altLabel}
-                                    ?s a skos:Concept; ?p ?lEN . FILTER(lang(?lEN)="en")
+                                    ?s a skos:Concept; ?p ?lEN . FILTER(lang(?lEN)="en") FILTER(regex(str(?s),"/faults"))
                                     FILTER(!regex(str(?lEN), "\\\\["))
                                     FILTER NOT EXISTS {?s rdf:type dcterms:BibliographicResource}
                                     OPTIONAL{?s ?p ?l . FILTER(lang(?l)="${USER_LANG}")}
